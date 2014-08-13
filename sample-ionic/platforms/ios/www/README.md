@@ -1,1 +1,0 @@
-## ngMootor sample with Ionic
