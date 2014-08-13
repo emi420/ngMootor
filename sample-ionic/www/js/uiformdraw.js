@@ -46,6 +46,7 @@
         },
         
         __init: function(self, element, options) {
+            self._$originalElement = element;
             self.options = options;
             UIFormDraw._build(self, element);
             UIFormDraw._addEventListeners(self);            
@@ -259,6 +260,7 @@
         // Open modal or file selector
         "open": function() {
             var self = this;
+            self.clear();
             self._$ctx.drawImage( self._$img,0,0);
             self._$ctx.lineWidth = 2;
             self._$ctx.restore();
@@ -314,8 +316,8 @@
        <span class="m-draw-placeholder">...</span> \
         <div class="m-hidden m-draw-canvas"> \
             <div class="m-draw-canvas-header"> \
-                <span class="m-draw-cancel"></span> \
-                <span class="m-draw-done"></span> \
+                <span class="m-draw-cancel m-icon-delete-circle"></span> \
+                <span class="m-draw-done m-icon-ok-circle"></span> \
             </div> \
             <canvas></canvas> \
             <div class="m-draw-canvas-footer"> \
