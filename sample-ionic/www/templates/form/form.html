@@ -18,13 +18,13 @@
            <div class="item item-select m-field m-camera-single">
                <span class="input-label">Picture</span>
                <input ng-camera-single ng-model="item.picture" type="file" class="m-camera-single" accept="image/*" />
-               <img class="m-camera-single-img" src="" ng-src="{{item.picture}}" title="Take a picure" />
+               <img class="m-camera-single-img" src="{{item.picture}}" title="Take a picture" />
            </div>
 
            <label class="item item-input m-field">
                <span class="input-label">Geolocation</span>
                 <i class="icon m-geo-icon ion-location placeholder-icon"></i>
-               <input ng-geo type="text" ng-model="item.geo" placeholder="Ej: Your location" class="m-text" />
+               <input ng-geo type="text" ng-model="item.geo" placeholder="A place in the world" class="m-text" />
            </label>
 
            <div class="item item-select m-field m-draw">
