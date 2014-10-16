@@ -25,14 +25,16 @@
             modelField = oModel[1] || undefined;
             
         var strCoords = Mootor.UIFormGeo.__onSuccess(self, position);
-    
+            
+        self._$input.setAttribute("disabled", "disabled");
+        
         if (modelField) {
             self._scope[modelName][modelField] = strCoords;
         } else {
             self._scope[modelName] = strCoords;
         }
         self._fn(self._scope);
-        
+
     }
     
     /**
@@ -48,20 +50,24 @@
     
     // Overrides _save method for use with Angular model 
     Mootor.UIFormDraw._save = function(self) {
-        self._$img.onload = function() {
-            var oModel = self._attrs['ngModel'].split("."),
+        
+        var instance = Mootor.UIFormDraw._activeInstance;
+        var $img = instance._$img;
+        
+        $img.onload = function() {
+            var oModel = instance._attrs['ngModel'].split("."),
                 // FIXME CHECK
                 modelName = oModel[0],
                 modelField = oModel[1] || undefined;
             if (modelField) {
-                self._scope[modelName][modelField] = self._$img.src;
+                instance._scope[modelName][modelField] = $img.src;
             } else {
-                self._scope[modelName] = self._$img.src;
+                instance._scope[modelName] = $img.src;
             }
-            self._fn(self._scope);
-            self.close();
+            instance._fn(instance._scope);
+            instance.close();
         }
-        self._$img.src = self._$canvas.toDataURL();
+        $img.src = instance._$canvas.toDataURL();
     }
 
     
